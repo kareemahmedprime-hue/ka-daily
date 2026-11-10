@@ -1128,7 +1128,8 @@ button:active{transform:scale(.93)}
   function renderPick(){
     if(!F) return;
     var open=S.tasks.filter(function(t){return !t.done});
-    var html='<button type="button" class="pchip'+(F.taskId?'':' on')+'" data-act="fpick" data-id=""><i></i>Just focus</button>';
+    var html='<button type="button" class="pchip'+(F.taskId?'':' on')+'" data-act="fpick" data-id=""><i></i>Just focus</button>'+
+      '<button type="button" class="pchip'+(F.taskId==='school'?' on':'')+'" data-act="fpick" data-id="school" style="--c:#FFC23D"><i></i>\uD83D\uDCDA Schoolwork / studying</button>';
     html+=open.map(function(t){ return '<button type="button" class="pchip'+(F.taskId===t.id?' on':'')+'" data-act="fpick" data-id="'+t.id+'" style="--c:'+t.c+'"><i></i>'+esc(t.text)+'</button>'; }).join('');
     var cur=taskById(F.taskId);
     if(cur && cur.done) html+='<button type="button" class="pchip on" data-act="fpick" data-id="'+cur.id+'" style="--c:'+cur.c+'"><i></i>'+esc(cur.text)+' ✓</button>';
@@ -1154,13 +1155,13 @@ button:active{transform:scale(.93)}
     $('fReset').hidden=fFresh();
     var t=taskById(F.taskId);
     $('fSub').textContent= !isF ? (F.running?'Breathe. Stretch. No scrolling.':'Short break, then back to it')
-      : t ? t.text : (F.running?'Stay locked in':'Ready when you are');
+      : F.taskId==='school' ? 'Schoolwork / studying' : t ? t.text : (F.running?'Stay locked in':'Ready when you are');
 
     var d=F.done, box=$('fDone');
     if(d){
       var dt=taskById(d.taskId);
       box.innerHTML = d.kind==='focus'
-        ? '<div class="eyebrow">Session complete 🎯</div><div class="big">'+d.min+' minutes'+(dt?' on '+esc(dt.text):' of focus')+'. Locked in.</div>'+
+        ? '<div class="eyebrow">Session complete 🎯</div><div class="big">'+d.min+' minutes'+(d.school?' on schoolwork':dt?' on '+esc(dt.text):' of focus')+'. Locked in.</div>'+
           '<div class="row">'+(dt&&!dt.done?'<button type="button" class="btn btn-main" data-act="fmark">✓ Mark task done</button>':'')+
           '<button type="button" class="btn btn-ghost" data-act="fbreak">Take a 5-min break</button><button type="button" class="btn btn-ghost" data-act="fdismiss">Close</button></div>'
         : '<div class="eyebrow">Break over ☕</div><div class="big">Ready for another round?</div>'+
@@ -1191,8 +1192,9 @@ button:active{transform:scale(.93)}
     F.running=false; F.remaining=0;
     if(F.mode==='focus'){
       var t=taskById(F.taskId);
-      F.sessions.push({min:F.dur,label:t?t.text:'Free focus',time:clock(new Date()),c:t?t.c:'#7DB4FF',fresh:true});
-      F.done={kind:'focus',min:F.dur,taskId:t?t.id:null};
+      var sch=F.taskId==='school';
+      F.sessions.push({min:F.dur,label:sch?'\uD83D\uDCDA Schoolwork / studying':t?t.text:'Free focus',time:clock(new Date()),c:sch?'#FFC23D':t?t.c:'#7DB4FF',fresh:true});
+      F.done={kind:'focus',min:F.dur,taskId:t?t.id:null,school:sch};
       F.lastFocus=F.dur;
     } else F.done={kind:'break',min:F.dur};
     F.remaining=fTotal();
