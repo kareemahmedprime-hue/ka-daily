@@ -213,7 +213,7 @@ button:active{transform:scale(.93)}
 @keyframes viewIn{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
 .view[hidden]{display:none}
 .nav{position:fixed;z-index:5;left:0;right:0;bottom:0;background:rgba(7,13,43,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
-.nav-inner{max-width:460px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.nav-inner{max-width:460px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .tab{background:none;border:0;border-radius:16px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-weight:700;font-size:13px}
 .tab[aria-selected="true"]{color:#fff;background:var(--grad);box-shadow:0 6px 20px rgba(43,84,196,.45)}
 .tab[aria-selected="true"] svg{animation:bump .5s var(--spring)}
@@ -346,6 +346,46 @@ button:active{transform:scale(.93)}
 /* toast */
 .toast{position:fixed;z-index:30;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translate(-50%,-80px);background:#1A2770;border:1px solid #5B8DEF;color:var(--text);padding:10px 16px;border-radius:14px;font-weight:700;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .4s var(--spring);max-width:calc(100% - 32px);pointer-events:none}
 .toast.show{transform:translate(-50%,0)}
+
+/* the hustle */
+.h-earn{padding:6px 6px 14px}
+.he-big{font-family:var(--display);font-weight:800;font-size:44px;line-height:1.1;padding:4px 12px 0;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.he-big.bump{animation:bump .6s var(--spring)}
+.he-unit{font-size:20px}
+.he-bar{position:relative;height:12px;border-radius:99px;background:rgba(255,255,255,.08);margin:28px 12px 6px}
+.he-bar i{display:block;height:100%;border-radius:99px;background:var(--grad);width:0;transition:width .8s var(--spring);box-shadow:0 0 14px rgba(62,111,230,.6)}
+.he-mark{position:absolute;top:-4px;width:2px;height:20px;background:rgba(255,255,255,.35)}
+.he-mark b{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--muted)}
+.he-foot{display:flex;justify-content:space-between;padding:10px 12px 0}
+.h-dots{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:6px 12px 12px}
+.h-dots i{height:12px;border-radius:99px;background:rgba(255,255,255,.08);transition:background .4s}
+.h-dots i.on{background:var(--grad);box-shadow:0 0 12px rgba(62,111,230,.5)}
+.h-dots i.pop{animation:bump .5s var(--spring)}
+.h-copy{display:grid;gap:8px;padding:0 6px 6px}
+.h-pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:6px}
+.hp{border-radius:12px;padding:8px 4px;text-align:center;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.hp b{display:block;font-family:var(--display);font-size:18px;font-weight:800;color:var(--hc)}
+.hp span{font-size:11px;font-weight:800;color:var(--muted)}
+.h-add{flex-wrap:wrap}
+.h-add input{flex:1 1 100%}
+.h-add select{flex:1 1 auto}
+.h-add select{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:0 10px;color:var(--text);font:inherit;font-weight:700;color-scheme:dark;min-height:46px}
+.h-leads .item,.h-follow .item{flex-wrap:wrap;cursor:pointer}
+.hl-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.hl-name{font-weight:800;overflow-wrap:anywhere}
+.hl-meta{font-size:12.5px;color:var(--muted);font-weight:600}
+.st{flex:none;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--hc) 55%,transparent);background:color-mix(in srgb,var(--hc) 14%,transparent);color:var(--hc)}
+.st.bump{animation:bump .5s var(--spring)}
+.hl-due{flex:none;font-size:11px;font-weight:800;color:var(--gold);padding:3px 8px;border-radius:999px;background:rgba(255,194,61,.12);border:1px solid rgba(255,194,61,.45)}
+.hl-edit{flex-basis:100%;display:flex;flex-direction:column;gap:10px;padding:12px 0 4px;cursor:default;animation:rowIn .35s var(--spring)}
+.hl-steps{display:flex;flex-wrap:wrap;gap:6px}
+.hl-steps button{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:7px 11px;font-weight:800;font-size:13px}
+.hl-steps button.on{background:color-mix(in srgb,var(--hc) 22%,transparent);border-color:var(--hc);color:var(--text)}
+.hl-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hl-row input{flex:1;min-width:110px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:12px;padding:10px 12px;outline:none;font-weight:700}
+.hl-row input:focus{border-color:var(--cyan)}
+.hl-del{background:none;border:1px solid rgba(255,92,119,.4);color:var(--bad);border-radius:11px;height:38px;padding:0 12px;font-weight:800;font-size:13px}
+.h-empty{padding:14px 12px;color:var(--muted);font-size:14px;font-weight:600}
 
 /* confetti layer */
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
@@ -503,6 +543,56 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
+  <!-- THE HUSTLE -->
+  <section class="view" id="view-hustle" aria-labelledby="hTitle" hidden>
+    <div class="stack">
+      <div class="top">
+        <div>
+          <div class="date">KA Designs</div>
+          <h1 id="hTitle">The <span class="gtext">Hustle</span></h1>
+        </div>
+        <div class="fstat num" id="hEarnChip">SAR 0</div>
+      </div>
+
+      <div class="card h-earn">
+        <div class="card-head"><h2>Earnings</h2><span class="count num" id="hPaidCount">0 paid</span></div>
+        <div class="he-big num"><span id="hEarned">0</span> <span class="he-unit">SAR</span></div>
+        <div class="he-bar"><i id="hEarnBar"></i><span class="he-mark" style="left:50%"><b>500</b></span></div>
+        <div class="he-foot"><span id="hEarnNote" class="lk-note">First goal: 500 SAR, then 1000.</span><span class="lk-note num">1000</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>Today's outreach</h2><span class="count num" id="hDmCount">0/5 DMs</span></div>
+        <div class="h-dots" id="hDots"></div>
+        <div class="h-copy">
+          <button type="button" class="copyreply" data-act="hCopy" data-lang="en">📋 Copy DM in English</button>
+          <button type="button" class="copyreply" data-act="hCopy" data-lang="ar" dir="rtl">📋 نسخ الرسالة بالعربي</button>
+        </div>
+        <div class="lk-note" style="padding:4px 12px 12px">Attach a redesign of one of their posts. Send 5 a day and win 8 ticks itself.</div>
+      </div>
+
+      <div class="card" id="hFollowCard" hidden>
+        <div class="card-head"><h2>Follow up today</h2><span class="count num" id="hFollowCount"></span></div>
+        <ul class="list" id="hFollowList"></ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>Pipeline</h2><span class="count num" id="hLeadCount"></span></div>
+        <div class="h-pipe" id="hPipe"></div>
+        <form class="add h-add" id="hAdd">
+          <label for="hName" style="position:absolute;left:-9999px">Business name</label>
+          <input id="hName" placeholder="Business you DMed…" autocomplete="off" maxlength="40">
+          <label for="hKind" style="position:absolute;left:-9999px">Type</label>
+          <select id="hKind">
+            <option>Café</option><option>Restaurant</option><option>Perfume</option><option>Clothing</option><option>Gym</option><option>Beauty</option><option>YouTuber</option><option>Other</option>
+          </select>
+          <button type="submit">Log DM</button>
+        </form>
+        <ul class="list h-leads" id="hLeads"></ul>
+      </div>
+    </div>
+  </section>
+
   <!-- RULES & ROUTINES -->
   <section class="view" id="view-routines" aria-labelledby="rrTitle" hidden>
     <div class="stack">
@@ -543,7 +633,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v1.0</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v1.1</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -555,6 +645,10 @@ button:active{transform:scale(.93)}
     <button class="tab" role="tab" id="tab-focus" data-view="focus" aria-selected="false">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
       Focus
+    </button>
+    <button class="tab" role="tab" id="tab-hustle" data-view="hustle" aria-selected="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+      Hustle
     </button>
     <button class="tab" role="tab" id="tab-routines" data-view="routines" aria-selected="false">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -706,6 +800,7 @@ button:active{transform:scale(.93)}
   if(!S.wakeTarget) S.wakeTarget='07:30';
   if(S.scroll==null) S.scroll=0;
   if(!S.unl) S.unl={};
+  if(!S.hustle) S.hustle={leads:[],dm:{date:'',n:0},goal:1000};
   if(S.setVer!==SET_VER){ if(S.setVer!==4) S.rules=defaultRules(); S.routines=defaultRoutines(); S.setVer=SET_VER;
     S.tasks.forEach(function(t){ if(t.win && t.n===2 && !t.done) t.text=WINS[1]; }); }
   var F=S.focus;
@@ -1075,7 +1170,7 @@ button:active{transform:scale(.93)}
   }
   addHandler('addTask','taskInput',function(v){ var t={id:uid(),text:v,done:false,c:nextColor()}; S.tasks.push(t); save(); renderToday({added:t.id, enterCard:true}); });
   addHandler('addRule','ruleInput',function(v){ var r={id:uid(),text:v,state:''}; S.rules.push(r); save(); renderRoutines({added:r.id}); });
-  $('resetBtn').addEventListener('click',function(){ var b=$('resetBtn'); if(!b.dataset.armed){ b.dataset.armed='1'; b.textContent='Tap again to erase everything'; setTimeout(function(){ delete b.dataset.armed; b.textContent='Reset everything'; },3000); return; } delete b.dataset.armed; b.textContent='Reset everything'; S=defaults(); S.focus=fDefaults(); F=S.focus; save(); shownPct=null; renderToday({enterCard:true, force:true}); renderRoutines(); renderFocus(); });
+  $('resetBtn').addEventListener('click',function(){ var b=$('resetBtn'); if(!b.dataset.armed){ b.dataset.armed='1'; b.textContent='Tap again to erase everything'; setTimeout(function(){ delete b.dataset.armed; b.textContent='Reset everything'; },3000); return; } delete b.dataset.armed; b.textContent='Reset everything'; S=defaults(); S.focus=fDefaults(); F=S.focus; S.sleep={}; S.wakeTarget='07:30'; S.scroll=0; S.unl={}; S.hustle={leads:[],dm:{date:'',n:0},goal:1000}; save(); shownPct=null; renderToday({enterCard:true, force:true}); renderRoutines(); renderFocus(); renderHustle(); });
 
   /* ---------- focus timer ---------- */
   var FPRE={focus:[15,25,45,60],'break':[5,10,15,20]};
@@ -1231,11 +1326,119 @@ button:active{transform:scale(.93)}
   });
   document.addEventListener('visibilitychange',function(){ if(!document.hidden && F.running){ if(fLeft()<=0) fComplete(true); else renderDial(); } });
 
+  /* ---------- the hustle ---------- */
+  var H_STEPS=[['dm',"DM'd",'#7DB4FF'],['replied','Replied','#9CC4FF'],['talking','Talking','#B9D5FF'],['won','Won','#FFC23D'],['paid','Paid','#48D7A4']];
+  var H_COL={dm:'#7DB4FF',replied:'#9CC4FF',talking:'#B9D5FF',won:'#FFC23D',paid:'#48D7A4',lost:'#FF5C77'};
+  var H_NAME={dm:"DM'd",replied:'Replied',talking:'Talking',won:'Won',paid:'Paid',lost:'Lost'};
+  var H_DM={
+    en:"Hi! I love your page. I redesigned one of your posts to show you what’s possible, no strings attached. If you like it, I make posts and reels for businesses 🎨 – KA Designs",
+    ar:"السلام عليكم! عجبني حسابكم وسويت تصميم تجريبي لأحد منشوراتكم. إذا عجبكم، أصمم بوستات وريلز للمشاريع 🎨 – KA Designs"
+  };
+  var hOpen=null, hShownEarn=null;
+  function hDays(key){ if(!key) return 0; var p=key.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]), t=new Date(now.getFullYear(),now.getMonth(),now.getDate()); return Math.round((t-d)/86400000); }
+  function hDmToday(){ var d=S.hustle.dm; return d.date===todayKey?d.n:0; }
+  function hAddDm(){
+    var d=S.hustle.dm; if(d.date!==todayKey){ d.date=todayKey; d.n=0; } d.n++;
+    if(d.n===5){
+      var w=S.tasks.filter(function(t){return t.win&&t.n===8})[0];
+      setTimeout(function(){ rain(); toast(w&&!w.done?'5 DMs sent. Win 8 ticked ✓':'5 DMs sent. Outreach done for today 🔥'); },300);
+      if(w && !w.done){ w.done=true; renderToday({enterCard:true}); }
+    }
+  }
+  function hDue(l){ return (l.status==='dm' || l.status==='replied') && hDays(l.dmDate)>=3; }
+  function hEarned(){ return S.hustle.leads.reduce(function(a,l){ return a+(l.status==='paid'?(+l.price||0):0); },0); }
+  function hLeadRow(l, extra){
+    var due=hDue(l), d=hDays(l.dmDate);
+    var meta=esc(l.kind)+' · '+(d===0?'DMed today':d===1?'DMed yesterday':'DMed '+d+' days ago')+(l.price?' · '+l.price+' SAR':'');
+    var html='<li class="item" data-act="hToggle" data-id="'+l.id+'"><div class="hl-main"><span class="hl-name">'+esc(l.name)+'</span><span class="hl-meta num">'+meta+'</span></div>'+
+      (due?'<span class="hl-due">Follow up</span>':'')+
+      '<span class="st'+(extra&&extra.bump===l.id?' bump':'')+'" style="--hc:'+H_COL[l.status]+'">'+H_NAME[l.status]+'</span>';
+    if(hOpen===l.id){
+      html+='<div class="hl-edit" data-stop="1"><div class="hl-steps">'+
+        H_STEPS.map(function(s){ return '<button type="button" class="'+(l.status===s[0]?'on':'')+'" style="--hc:'+s[2]+'" data-act="hStatus" data-id="'+l.id+'" data-s="'+s[0]+'">'+s[1]+'</button>'; }).join('')+
+        '<button type="button" class="'+(l.status==='lost'?'on':'')+'" style="--hc:#FF5C77" data-act="hStatus" data-id="'+l.id+'" data-s="lost">Lost</button></div>'+
+        '<div class="hl-row"><label for="hp-'+l.id+'" style="position:absolute;left:-9999px">Price in SAR</label><input id="hp-'+l.id+'" type="number" inputmode="numeric" min="0" placeholder="Price (SAR)" value="'+(l.price||'')+'" data-price="'+l.id+'">'+
+        ((l.status==='dm'||l.status==='replied')?'<button type="button" class="mini-btn" data-act="hFollow" data-id="'+l.id+'">↻ Followed up</button>':'')+
+        '<button type="button" class="hl-del" data-act="hDel" data-id="'+l.id+'">Delete</button></div></div>';
+    }
+    return html+'</li>';
+  }
+  function renderHustle(fx){
+    if(!$('view-hustle')) return;
+    fx=fx||{};
+    var H=S.hustle, earned=hEarned(), goal=H.goal||1000;
+    var el=$('hEarned');
+    if(hShownEarn==null || REDUCED || hShownEarn===earned){ el.textContent=earned; }
+    else { var from=hShownEarn, t0=performance.now(); (function step(t){ var k=Math.min(1,(t-t0)/700), e=1-Math.pow(1-k,3); el.textContent=Math.round(from+(earned-from)*e); if(k<1) requestAnimationFrame(step); })(t0); pop(el.parentNode); }
+    hShownEarn=earned;
+    $('hEarnChip').textContent='SAR '+earned;
+    $('hEarnBar').style.width=Math.min(100,earned/goal*100)+'%';
+    var paid=H.leads.filter(function(l){return l.status==='paid'}).length;
+    $('hPaidCount').textContent=paid+' paid';
+    $('hEarnNote').textContent= earned>=goal?'1000 SAR reached. New goal time.':earned>=500?'500 hit! '+(goal-earned)+' SAR to 1000.':(500-earned)+' SAR to your first 500.';
+
+    var n=hDmToday();
+    $('hDmCount').textContent=Math.min(n,99)+'/5 DMs';
+    $('hDots').innerHTML=[0,1,2,3,4].map(function(i){ return '<i class="'+(i<n?'on':'')+(fx.dot===i?' pop':'')+'"></i>'; }).join('');
+
+    var due=H.leads.filter(hDue);
+    $('hFollowCard').hidden=!due.length;
+    $('hFollowCount').textContent=due.length;
+    $('hFollowList').innerHTML=due.map(function(l){ return '<li class="item"><div class="hl-main"><span class="hl-name">'+esc(l.name)+'</span><span class="hl-meta num">No reply for '+hDays(l.dmDate)+' days. Send a short follow-up.</span></div><button type="button" class="mini-btn" data-act="hFollow" data-id="'+l.id+'">↻ Done</button></li>'; }).join('');
+
+    var counts={}; H.leads.forEach(function(l){ counts[l.status]=(counts[l.status]||0)+1; });
+    $('hPipe').innerHTML=H_STEPS.map(function(s){ return '<div class="hp" style="--hc:'+s[2]+'"><b class="num">'+(counts[s[0]]||0)+'</b><span>'+s[1]+'</span></div>'; }).join('');
+    $('hLeadCount').textContent=H.leads.length+(H.leads.length===1?' lead':' leads');
+    var order={talking:0,won:1,replied:2,dm:3,paid:4,lost:5};
+    var list=H.leads.slice().sort(function(a,b){ return (order[a.status]-order[b.status]) || (b.ts-a.ts); });
+    $('hLeads').innerHTML=list.length? list.map(function(l){ return hLeadRow(l,fx); }).join('') : '<li class="h-empty">No leads yet. DM your first business, then log it here.</li>';
+    if(fx.added){ var r=document.querySelector('#hLeads .item[data-id="'+fx.added+'"]'); if(r) pop(r,'enter-row'); }
+  }
+  function hLead(id){ for(var i=0;i<S.hustle.leads.length;i++) if(S.hustle.leads[i].id===id) return S.hustle.leads[i]; return null; }
+
+  $('hAdd').addEventListener('submit',function(e){
+    e.preventDefault(); var inp=$('hName'), v=inp.value.trim();
+    if(!v){ pop(inp,'shake'); return; }
+    var l={id:uid(),name:v,kind:$('hKind').value,status:'dm',dmDate:todayKey,price:0,ts:Date.now()};
+    S.hustle.leads.push(l); var before=hDmToday(); hAddDm(); inp.value=''; save();
+    var p=centerOf(this.querySelector('button')); burst(p.x,p.y,18,6);
+    renderHustle({added:l.id, dot:Math.min(before,4)});
+  });
+  document.addEventListener('change',function(e){
+    var id=e.target.getAttribute && e.target.getAttribute('data-price'); if(!id) return;
+    var l=hLead(id); if(!l) return; var was=l.status==='paid'?(+l.price||0):0;
+    l.price=Math.max(0,Math.round(+e.target.value||0)); save(); renderHustle();
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-stop]') && !e.target.closest('button')) return;
+    var el=e.target.closest('[data-act]'); if(!el) return;
+    var act=el.getAttribute('data-act'); if(act.charAt(0)!=='h') return;
+    var id=el.getAttribute('data-id'), l=id?hLead(id):null, p;
+    if(act==='hToggle'){ hOpen=hOpen===id?null:id; renderHustle(); }
+    else if(act==='hStatus' && l){
+      var s=el.getAttribute('data-s'); if(l.status===s) return;
+      l.status=s; save();
+      if(s==='paid'){ if(!l.price){ toast('Add the price so it counts towards your earnings.'); } p=centerOf(el); burst(p.x,p.y,40,9,['#48D7A4','#FFC23D','#FFFFFF','#7DB4FF']); setTimeout(rain,250); }
+      else if(s==='won'){ p=centerOf(el); burst(p.x,p.y,30,8,['#FFC23D','#FFFFFF','#7DB4FF']); toast('Client won! Ask for half the payment upfront.'); }
+      else if(s==='replied'||s==='talking'){ p=centerOf(el); burst(p.x,p.y,14,5); }
+      renderHustle({bump:id});
+    }
+    else if(act==='hFollow' && l){ l.dmDate=todayKey; var before=hDmToday(); hAddDm(); save(); p=centerOf(el); burst(p.x,p.y,14,5); renderHustle({dot:Math.min(before,4)}); toast('Follow-up logged. Counts as a DM.'); }
+    else if(act==='hDel' && l){
+      if(!el.dataset.armed){ el.dataset.armed='1'; el.textContent='Tap again'; setTimeout(function(){ delete el.dataset.armed; el.textContent='Delete'; },2500); return; }
+      S.hustle.leads=S.hustle.leads.filter(function(x){return x.id!==id}); hOpen=null; save(); renderHustle();
+    }
+    else if(act==='hCopy'){
+      var txt=H_DM[el.getAttribute('data-lang')];
+      try{ navigator.clipboard.writeText(txt).then(function(){ toast('Copied. Paste it in their DMs.'); pop(el); },function(){ toast('Copy didn’t work. Try again.'); }); }catch(_){ toast('Copy didn’t work. Try again.'); }
+    }
+  });
+
   function show(view,animate){
-    if(view!=='routines' && view!=='focus') view='today';
+    if(['routines','focus','hustle'].indexOf(view)<0) view='today';
     curView=view;
     var v=$('view-'+view);
-    ['today','focus','routines'].forEach(function(n){
+    ['today','focus','hustle','routines'].forEach(function(n){
       $('view-'+n).hidden=n!==view;
       $('tab-'+n).setAttribute('aria-selected',String(n===view));
     });
@@ -1248,7 +1451,7 @@ button:active{transform:scale(.93)}
   });
   window.addEventListener('hashchange',function(){ show(location.hash.slice(1),true); });
 
-  renderToday({enterCard:true}); renderRoutines(); renderFocus(); show(location.hash.slice(1),false);
+  renderToday({enterCard:true}); renderRoutines(); renderFocus(); renderHustle(); show(location.hash.slice(1),false);
   if(F.running){ if(fLeft()<=0) fComplete(true); else loop(); }
 })();
 </script>
