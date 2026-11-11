@@ -633,7 +633,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v1.2</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v1.3</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -1459,6 +1459,9 @@ button:active{transform:scale(.93)}
   renderToday({enterCard:true}); renderRoutines(); renderFocus(); renderHustle(); show(location.hash.slice(1),false);
   if(F.running){ if(fLeft()<=0) fComplete(true); else loop(); }
 })();
+</script>
+<script>
+if('serviceWorker' in navigator){ window.addEventListener('load',function(){ navigator.serviceWorker.register('./sw.js').catch(function(){}); }); }
 </script>
 </body>
 </html>
