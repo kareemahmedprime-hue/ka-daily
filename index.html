@@ -633,7 +633,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v1.1</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v1.2</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -681,8 +681,8 @@ button:active{transform:scale(.93)}
     'Speaking practice (5 min)',
     'Stretch and mobility (10 min)',
     'Core Casuals: 30 min, finish a real task',
-    'Earn: one step towards my first 500–1000 SAR',
-    'The KA Grind: plan, shoot, edit or post',
+    'Outreach: send 5 DMs (ticks itself in The Hustle)',
+    'Create: make or post one KA Designs piece',
     "Plan tomorrow's wins"
   ];
 
@@ -770,7 +770,7 @@ button:active{transform:scale(.93)}
         ['1:30 PM','Rest + texting window 1 (until 1:50)'],
         ['2:00 PM','Upper body and core workout (win 1)'],
         ['2:30 PM','Core Casuals 30 min, if not done this morning (win 7)'],
-        ['3:00 PM','Earning step or The KA Grind (win 8 or 9)'],
+        ['3:00 PM','KA Designs: 5 DMs (win 8) + one piece (win 9)'],
         ['4:00 PM','Free time. Gaming unlocked once wins 1, 7 and 8 are done']])},
       {name:'Night routine',when:'From 9:00 PM',items:mk([
         ['9:00 PM','Texting window 2 (until 9:20)'],
@@ -801,6 +801,11 @@ button:active{transform:scale(.93)}
   if(S.scroll==null) S.scroll=0;
   if(!S.unl) S.unl={};
   if(!S.hustle) S.hustle={leads:[],dm:{date:'',n:0},goal:1000};
+  if(S.winsVer!==2){
+    S.tasks.forEach(function(t){ if(t.win && (t.n===8||t.n===9)) t.text=WINS[t.n-1]; });
+    S.routines.forEach(function(r){ r.items.forEach(function(it){ if(/KA Grind/.test(it.text)) it.text='KA Designs: 5 DMs (win 8) + one piece (win 9)'; }); });
+    S.winsVer=2;
+  }
   if(S.setVer!==SET_VER){ if(S.setVer!==4) S.rules=defaultRules(); S.routines=defaultRoutines(); S.setVer=SET_VER;
     S.tasks.forEach(function(t){ if(t.win && t.n===2 && !t.done) t.text=WINS[1]; }); }
   var F=S.focus;
