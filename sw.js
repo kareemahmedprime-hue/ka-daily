@@ -1,7 +1,7 @@
 /* KA Daily offline support.
    - The app page: network first (so updates arrive when online), cached copy when offline.
    - Everything else (icons, fonts): served from cache instantly, refreshed in the background. */
-var CACHE = 'ka-daily-v1';
+var CACHE = 'ka-daily-v2';
 var SHELL = [
   './',
   './index.html',

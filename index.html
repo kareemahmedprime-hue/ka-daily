@@ -387,6 +387,25 @@ button:active{transform:scale(.93)}
 .hl-del{background:none;border:1px solid rgba(255,92,119,.4);color:var(--bad);border-radius:11px;height:38px;padding:0 12px;font-weight:800;font-size:13px}
 .h-empty{padding:14px 12px;color:var(--muted);font-size:14px;font-weight:600}
 
+/* workout */
+.wo-tag{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9CC4FF;margin-bottom:4px}
+.wo-warm{margin:4px 6px 10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:14px;font-weight:600;line-height:1.5}
+.wo-list{list-style:none;margin:0;padding:0 6px;counter-reset:wo}
+.wo-list li{display:flex;align-items:center;gap:12px;padding:11px 6px;border-top:1px solid rgba(42,58,143,.7);counter-increment:wo}
+.wo-list li:first-child{border-top:0}
+.wo-list li::before{content:counter(wo,decimal-leading-zero);font-family:var(--display);font-weight:800;font-size:12px;color:var(--c,#7DB4FF);width:22px;flex:none}
+.wo-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.wo-name{font-weight:800}
+.wo-how{font-size:13px;color:var(--muted);font-weight:600}
+.wo-reps{font-size:13px;font-weight:800;color:#B9D5FF;white-space:nowrap;flex:none}
+.yt{flex:none;display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:800;color:#fff;text-decoration:none;background:#C4302B;border-radius:999px;padding:6px 10px;transition:transform .18s var(--spring)}
+.yt:active{transform:scale(.92)}
+.wo-warm .yt{margin-left:6px;vertical-align:middle}
+.wo-rounds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 12px 8px}
+.wo-rounds button{border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted);border-radius:14px;padding:12px 0;font-weight:800;font-size:14px}
+.wo-rounds button.on{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(43,84,196,.45)}
+.wo-rounds button.pop{animation:bump .5s var(--spring)}
+
 /* confetti layer */
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 
@@ -601,6 +620,15 @@ button:active{transform:scale(.93)}
         <h1 id="rrTitle">Rules &amp; <span class="gtext">Routines</span></h1>
       </div>
 
+      <div class="card" id="woCard">
+        <div class="card-head"><div><h2>20-min workout</h2><div class="when">Upper body + core · win 1</div></div><span class="count num" id="woCount">0/3 rounds</span></div>
+        <div class="wo-warm"><span class="wo-tag">Warm-up · 2 min</span>Arm circles, shoulder rolls and torso twists (30 s each), then 10 wall push-ups <a class="yt" href="https://www.youtube.com/watch?v=lIRpibTFB9I" target="_blank" rel="noopener" aria-label="Wall push-up tutorial on YouTube">▶ Watch</a></div>
+        <div class="wo-tag" style="margin:4px 12px 2px">Circuit · 3 rounds · 60 s rest between rounds</div>
+        <ol class="wo-list" id="woList"></ol>
+        <div class="wo-rounds" id="woRounds"></div>
+        <div class="lk-note" style="padding:2px 12px 12px">Skip anything that hurts your leg. Add 1–2 reps each week.</div>
+      </div>
+
       <div class="card">
         <div class="card-head"><h2>My limits</h2><span class="count" id="limDay"></span></div>
         <div class="limits" id="limits"></div>
@@ -633,7 +661,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v1.3</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v1.4</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -939,7 +967,44 @@ button:active{transform:scale(.93)}
     renderSleep();
   }
 
+  var WORKOUT=[
+    ['Push-ups','Hands on a table or wall if too hard','8–12','https://www.youtube.com/watch?v=WDIpL0pjun0'],
+    ['Chair dips','Knees bent, feet close to the chair','8–12','https://www.youtube.com/watch?v=AWz_7B1cch0'],
+    ['Backpack rows','Books in a bag, one hand on a table','10–12 / arm','https://www.youtube.com/watch?v=puaKVJOY8eg'],
+    ['Backpack shoulder press','Seated, push the bag overhead','10–12','https://www.youtube.com/watch?v=3jUZS3QVzyY'],
+    ['Plank','On forearms, body straight','20–40 s','https://www.youtube.com/watch?v=Gg1Hh99hHa0'],
+    ['Dead bugs','Arms only if your leg hurts','10 / side','https://www.youtube.com/watch?v=bxn9FBrt4-A'],
+    ['Crunches','Slow, hands light on your head','12–15','https://www.youtube.com/watch?v=2R93PU2IM-Y']
+  ];
+  function renderWorkout(fx){
+    if(!$('woList')) return;
+    fx=fx||{};
+    if(!S.workout || S.workout.date!==todayKey) S.workout={date:todayKey,rounds:[false,false,false]};
+    $('woList').innerHTML=WORKOUT.map(function(w,i){
+      return '<li style="--c:'+COLORS[i%COLORS.length]+'"><div class="wo-main"><span class="wo-name">'+esc(w[0])+'</span><span class="wo-how">'+esc(w[1])+'</span></div>'+
+        '<span class="wo-reps num">'+esc(w[2])+'</span><a class="yt" href="'+w[3]+'" target="_blank" rel="noopener" aria-label="'+esc(w[0])+' tutorial on YouTube">▶</a></li>';
+    }).join('');
+    var r=S.workout.rounds, n=r.filter(Boolean).length;
+    $('woCount').textContent=n+'/3 rounds';
+    $('woCount').className='count num'+(n===3?' full':'');
+    $('woRounds').innerHTML=r.map(function(on,i){ return '<button type="button" class="'+(on?'on':'')+(fx.pop===i?' pop':'')+'" data-act="woRound" data-i="'+i+'" aria-pressed="'+on+'">'+(on?'✓ ':'')+'Round '+(i+1)+'</button>'; }).join('');
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-act="woRound"]'); if(!el) return;
+    var i=+el.getAttribute('data-i'), r=S.workout.rounds; r[i]=!r[i];
+    if(r[i]){ var p=centerOf(el); burst(p.x,p.y,16,6); }
+    var all=r.every(Boolean);
+    if(all){
+      var w=S.tasks.filter(function(t){return t.win&&t.n===1})[0];
+      if(w && !w.done){ w.done=true; renderToday({enterCard:true}); toast('Workout done. Win 1 ticked ✓'); }
+      else toast('Workout done 💪');
+      setTimeout(rain,200);
+    }
+    save(); renderWorkout({pop:i});
+  });
+
   function renderRoutines(fx){
+    renderWorkout();
     fx=fx||{};
     $('limDay').textContent='Every day';
     var LIMITS=[
