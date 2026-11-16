@@ -357,7 +357,7 @@ button:active{transform:scale(.93)}
 .he-mark{position:absolute;top:-4px;width:2px;height:20px;background:rgba(255,255,255,.35)}
 .he-mark b{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--muted)}
 .he-foot{display:flex;justify-content:space-between;padding:10px 12px 0}
-.h-dots{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:6px 12px 12px}
+.h-dots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px 12px 12px}
 .h-dots i{height:12px;border-radius:99px;background:rgba(255,255,255,.08);transition:background .4s}
 .h-dots i.on{background:var(--grad);box-shadow:0 0 12px rgba(62,111,230,.5)}
 .h-dots i.pop{animation:bump .5s var(--spring)}
@@ -406,6 +406,14 @@ button:active{transform:scale(.93)}
 .wo-rounds button.on{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(43,84,196,.45)}
 .wo-rounds button.pop{animation:bump .5s var(--spring)}
 
+/* win rotation */
+.wnum{font-size:18px;width:24px;text-align:center}
+.wcat{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin-top:2px}
+.item.done .wcat{color:var(--muted)}
+.x.swap{font-size:18px;color:#9CC4FF}
+.x.swap:hover{color:#fff;background:rgba(125,180,255,.15)}
+.lk-head{display:flex;flex-direction:column;gap:2px}
+
 /* confetti layer */
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 
@@ -443,7 +451,7 @@ button:active{transform:scale(.93)}
           <div class="val num" id="ringVal">0%</div>
         </div>
         <div style="flex:1">
-          <div class="label num" id="progLabel">0 of 10 wins</div>
+          <div class="label num" id="progLabel">0 of 5 wins</div>
           <div class="muted" style="font-size:14px" id="progSub">Tick them off one by one.</div>
           <div class="bar"><i id="barFill" style="width:0"></i></div>
         </div>
@@ -457,25 +465,24 @@ button:active{transform:scale(.93)}
       <div class="next" id="nextCard"></div>
 
       <div class="card">
-        <div class="card-head"><h2>Unlocks</h2><span class="count num" id="unlockCount"></span></div>
+        <div class="card-head"><h2>Screen time</h2><span class="count num" id="unlockCount"></span></div>
         <div class="locks">
-          <div class="lk" id="lkGame">
-            <div class="lk-top"><svg class="lockico" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path class="shackle" d="M8 11V7.5a4 4 0 0 1 8 0V11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><rect x="4.5" y="11" width="15" height="10" rx="3" fill="currentColor"/><circle cx="12" cy="16" r="1.6" fill="#0E1740"/></svg><div class="lk-head"><div class="lk-name">🎮 Gaming</div><div class="lk-state" id="lkGameState"></div></div></div>
-            <div class="lk-body" id="lkGameBody"></div>
-          </div>
           <div class="lk" id="lkScroll">
-            <div class="lk-top"><svg class="lockico" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path class="shackle" d="M8 11V7.5a4 4 0 0 1 8 0V11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><rect x="4.5" y="11" width="15" height="10" rx="3" fill="currentColor"/><circle cx="12" cy="16" r="1.6" fill="#0E1740"/></svg><div class="lk-head"><div class="lk-name">📱 Scrolling</div><div class="lk-state" id="lkScrollState"></div></div></div>
+            <div class="lk-head"><div class="lk-name">📱 Reels &amp; short videos</div><div class="lk-state" id="lkScrollState"></div></div>
             <div class="lk-body" id="lkScrollBody"></div>
+          </div>
+          <div class="lk open" id="lkGame">
+            <div class="lk-head"><div class="lk-name">🎮 Gaming</div><div class="lk-state" id="lkGameState"></div></div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-head"><h2>Today's 10 wins</h2><span class="count num" id="taskCount"></span></div>
+        <div class="card-head"><h2 id="winsHead">Today's 5 wins</h2><span class="count num" id="taskCount"></span></div>
         <ul class="list" id="taskList"></ul>
         <form class="add" id="addTask">
           <label for="taskInput" style="position:absolute;left:-9999px">New task</label>
-          <input id="taskInput" placeholder="Add a bonus task…" autocomplete="off" maxlength="80">
+          <input id="taskInput" placeholder="Add a bonus task (optional)…" autocomplete="off" maxlength="80">
           <button type="submit">Add</button>
         </form>
       </div>
@@ -581,13 +588,13 @@ button:active{transform:scale(.93)}
       </div>
 
       <div class="card">
-        <div class="card-head"><h2>Today's outreach</h2><span class="count num" id="hDmCount">0/5 DMs</span></div>
+        <div class="card-head"><h2>Today's outreach</h2><span class="count num" id="hDmCount">0/3 DMs</span></div>
         <div class="h-dots" id="hDots"></div>
         <div class="h-copy">
           <button type="button" class="copyreply" data-act="hCopy" data-lang="en">📋 Copy DM in English</button>
           <button type="button" class="copyreply" data-act="hCopy" data-lang="ar" dir="rtl">📋 نسخ الرسالة بالعربي</button>
         </div>
-        <div class="lk-note" style="padding:4px 12px 12px">Attach a redesign of one of their posts. Send 5 a day and win 8 ticks itself.</div>
+        <div class="lk-note" style="padding:4px 12px 12px">Attach a redesign of one of their posts. 3 DMs on outreach days is plenty.</div>
       </div>
 
       <div class="card" id="hFollowCard" hidden>
@@ -621,7 +628,7 @@ button:active{transform:scale(.93)}
       </div>
 
       <div class="card" id="woCard">
-        <div class="card-head"><div><h2>20-min workout</h2><div class="when">Upper body + core · win 1</div></div><span class="count num" id="woCount">0/3 rounds</span></div>
+        <div class="card-head"><div><h2>20-min workout</h2><div class="when">Upper body + core</div></div><span class="count num" id="woCount">0/3 rounds</span></div>
         <div class="wo-warm"><span class="wo-tag">Warm-up · 2 min</span>Arm circles, shoulder rolls and torso twists (30 s each), then 10 wall push-ups <a class="yt" href="https://www.youtube.com/watch?v=lIRpibTFB9I" target="_blank" rel="noopener" aria-label="Wall push-up tutorial on YouTube">▶ Watch</a></div>
         <div class="wo-tag" style="margin:4px 12px 2px">Circuit · 3 rounds · 60 s rest between rounds</div>
         <ol class="wo-list" id="woList"></ol>
@@ -661,7 +668,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v1.4</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v2.0</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -694,25 +701,69 @@ button:active{transform:scale(.93)}
   var COLORS=['#7DB4FF','#3E6FE6','#B9D5FF','#5B8DEF','#2B54C4','#9CC4FF'];
   var REDUCED=false; try{ REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
 
-  var CHEAT={time:'All day',title:'Cheat day',detail:'Win 2 counts automatically today. Back on plan tomorrow.',kind:'cheat'};
-  var GAMING_CHECK={time:'By today',title:'Gaming practice checklist',detail:"Finish this week's practice list. It's weekly, not daily.",kind:'weekly'};
-  var REVIEW={time:'10 min',title:'Weekly review',detail:'How many days did you win all 10? What will you change next week?',kind:'weekly'};
-  var SCHEDULE={0:[],1:[],2:[],3:[],4:[CHEAT],5:[GAMING_CHECK,REVIEW],6:[]};
+  var CHEAT={time:'All day',title:'Treat day',detail:'Enjoy your favourite food today.',kind:'cheat'};
+  var FREE={time:'All day',title:'Free day',detail:'No wins today. Rest, play, enjoy.',kind:'cheat'};
+  var SAT_BUILD={time:'Optional',title:'Core Casuals power hour',detail:'One longer session a week moves you towards a summer 2027 launch.',kind:'weekly'};
+  var LOOKBACK={time:'10 min',title:'Look back at your week',detail:'What went well? What felt like too much? Adjust and move on.',kind:'weekly'};
+  var SCHEDULE={0:[],1:[],2:[],3:[],4:[CHEAT],5:[FREE],6:[SAT_BUILD,LOOKBACK]};
+  var WEEKEND=function(d){ return d===5||d===6; };
 
 
-  // Rule: win 10 times a day. These 10 come back fresh every morning.
-  var WINS=[
-    'Upper body and core workout (20 min)',
-    'Eat 3 good meals (ideas in Routines)',
-    'Self-control: no scrolling or texting outside my limits',
-    'Learn something new',
-    'Speaking practice (5 min)',
-    'Stretch and mobility (10 min)',
-    'Core Casuals: 30 min, finish a real task',
-    'Outreach: send 5 DMs (ticks itself in The Hustle)',
-    'Create: make or post one KA Designs piece',
-    "Plan tomorrow's wins"
-  ];
+  // Win Rotation: 5 simple wins a day (none on Friday), one from each category.
+  // Each category's pool is shuffled once and walked one step per day, so the same
+  // weekday gets different wins from week to week. No pool length is a multiple of 7.
+  var W=function(t,tag){ return {t:t,tag:tag||''}; };
+  var WORKOUT_W=W('20-min workout (Routines tab)','workout'), STRETCH_W=W('10-min stretch','stretch'), DM_W=W('Send 3 outreach DMs (The Hustle)','dm'), LIGHTS_W=W('Lights out by 10:30','sleep');
+  var POOLS={
+    learn:{label:'Learn',ico:'📚',items:[
+      'Read 10 pages of any book','Learn one new Canva trick and try it','Watch a 10-min video on branding, then explain it out loud',
+      'Finish today’s homework before 5 PM','Learn 5 new English words and use one today','Study 25 min with the Focus timer',
+      'Look up how a car turbo works','Learn one photography rule and take a photo using it','Watch a short video on saving money and write 3 points',
+      'Review today’s school notes for 15 min','Learn a keyboard shortcut that saves you time','Find 3 brands you like and note what makes their posts good',
+      'Learn one new fact about Riyadh or Saudi history','Practise 10 min of your hardest subject','Watch a CapCut tutorial and try one effect',
+      'Read about a young founder who started early','Learn the difference between serif and sans-serif fonts','Teach someone at home something you learned this week',
+      'Write down 3 things you learned today','Learn how Instagram picks which posts to show','Learn one colour rule for design and use it',
+      'Listen to a podcast episode about business or design','Study for your next test for 20 min','Look up how a famous clothing brand started'
+    ].map(function(t){return W(t);})},
+    move:{label:'Move',ico:'💪',items:[
+      WORKOUT_W,STRETCH_W,W('Go for a ride'),WORKOUT_W,W('Plank challenge: beat your last time'),STRETCH_W,
+      W('15 push-ups spread through the day'),WORKOUT_W,W('3 sets of chair dips'),STRETCH_W,W('Core only: dead bugs and crunches, 3 rounds'),
+      WORKOUT_W,W('Swim, if you can get to a pool'),STRETCH_W,W('Walk 15 min, only if your leg feels good'),WORKOUT_W,
+      W('20 min of fresh air outside'),W('Shoulder and neck stretch after school'),WORKOUT_W,W('Go for a ride'),STRETCH_W,W('Move to 2 songs, any way you like')
+    ]},
+    build:{label:'Build',ico:'🛠️',items:[
+      DM_W,W('Make one portfolio piece for KA Designs'),W('Write 3 product description ideas for Origin'),W('Set up the private Core Casuals Instagram'),
+      W('Redesign one local business’s post to send in a DM'),DM_W,W('Design one Core Casuals teaser in Canva'),W('Plan 3 future Core Casuals posts'),
+      W('Post something on KA Designs'),W('Research how 2 small clothing brands launched'),DM_W,W('Write the inventory order message for Core Casuals'),
+      W('Note 3 ideas to build hype for the Origin drop'),W('Follow up with one business that hasn’t replied'),W('Improve one old design (fonts, spacing, colours)'),
+      DM_W,W('Write 5 caption ideas for KA Designs'),W('Make a story highlight cover for KA Designs'),W('List what you still need before Core Casuals launches'),
+      W('Check what 3 other designers in Riyadh charge'),W('Make one portfolio piece for KA Designs'),W('Design a KA Designs price list post'),W('Make a gaming thumbnail for practice')
+    ]},
+    enjoy:{label:'Enjoy',ico:'🎮',items:[
+      'Play 1v1s with your friend','Eat dinner with family, phone away','Go for a ride or walk with someone','Watch a movie or an episode you like',
+      'Call or meet up with a friend','Play your favourite game, guilt-free','Try a new snack or food','Spot cool cars when you’re out 🏎️',
+      'Take 5 nice photos of anything','Listen to a full album you like','Play a game with your family','Make a car edit just for fun',
+      'Do something nice for someone at home','30 min with no screens, doing anything you like','Design something just for you, not for work','Play Rocket League just for fun',
+      'Go somewhere new with family','Have a laugh with a friend','Try a new game mode for fun','Have a slow breakfast with no rush',
+      'Plan something fun for the weekend','Watch car videos you love','Go to the mall or out with family','Do nothing productive for an hour, guilt-free'
+    ].map(function(t){return W(t);})},
+    reset:{label:'Reset',ico:'🌙',items:[
+      LIGHTS_W,W('Phone charges outside your room tonight'),W('Drink 6 glasses of water'),W('Tidy your desk'),LIGHTS_W,W('No reels until after school'),
+      W('Help with one chore at home'),W('Write one thing you’re proud of today'),LIGHTS_W,W('Eat a fruit or vegetable with lunch'),W('Take 5 slow breaths when you feel stressed'),
+      W('Clean up your phone’s home screen'),LIGHTS_W,W('Pack your stuff for tomorrow'),W('Say something kind to yourself'),W('Have a proper breakfast'),
+      W('Phone charges outside your room tonight'),W('10 min in the sun'),W('Turn off notifications during school'),W('Organise your Canva folders'),W('Put your clothes away'),W('Make your bed')
+    ]}
+  };
+  var SLOTS=['learn','move','build','enjoy','reset'];
+  function seeded(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+  var PERM={};
+  SLOTS.forEach(function(slot,si){ var n=POOLS[slot].items.length, a=[], r=seeded(2027+si*101), i, j, x; for(i=0;i<n;i++) a.push(i); for(i=n-1;i>0;i--){ j=Math.floor(r()*(i+1)); x=a[i]; a[i]=a[j]; a[j]=x; } PERM[slot]=a; });
+  function dayNumOf(d){ return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); }
+  function winItem(slot,k){
+    var a=PERM[slot], it=POOLS[slot].items[a[(dayNumOf(new Date())+k)%a.length]];
+    if(it.tag==='sleep' && new Date().getDay()===4) return W('Lights out by 11:30 (weekend night)','sleep');
+    return it;
+  }
 
   var MEALS={
     breakfast:[
@@ -767,45 +818,38 @@ button:active{transform:scale(.93)}
   var uid=function(){return Math.random().toString(36).slice(2,9)};
   var colorN=0; function nextColor(){ return COLORS[(colorN++)%COLORS.length]; }
 
+  var WIN_COL={learn:'#7DB4FF',move:'#48D7A4',build:'#5B8DEF',enjoy:'#FFC23D',reset:'#B9D5FF'};
   function freshWins(){
-    colorN=0;
-    var cheat=todayIdx===4;
-    return WINS.map(function(w,i){
-      var t={id:uid(),text:w,done:false,win:true,n:i+1,c:nextColor()};
-      if(i===1 && cheat){ t.text='Eat 3 good meals (cheat day 🍔)'; t.done=true; }
-      return t;
+    if(todayIdx===5) return [];
+    return SLOTS.map(function(slot,i){
+      var it=winItem(slot,0);
+      return {id:uid(),text:it.t,tag:it.tag,slot:slot,k:0,done:false,win:true,n:i+1,c:WIN_COL[slot]};
     });
   }
 
-  var SET_VER=5;
+  var SET_VER=6;
   function defaultRules(){
     return [
-      'Work before play: no gaming until wins 1, 7 and 8 are done',
-      'No phone for the first hour after waking up',
-      'Texts only in my two texting windows',
-      'Phone sleeps outside my bedroom',
-      'Protect my leg: if it hurts, stop and swap the exercise',
-      'Every session finishes something'
+      'Important thing first, then enjoy it guilt-free',
+      'My phone sleeps outside my bedroom',
+      'Protect my leg: if it hurts, stop',
+      'A missed day is fine. I just restart tomorrow'
     ].map(function(t){ return {id:uid(),text:t,state:''}; });
   }
   function defaultRoutines(){
     var mk=function(a){ return a.map(function(x){ return {time:x[0],text:x[1],done:false}; }); };
     return [
-      {name:'Morning routine',when:'Before school \u00b7 by 9:00 AM',items:mk([
-        ['','Make the bed'],['','Glass of water'],['','10-min stretch (win 6)'],['',"Look over today's 10 wins"],
-        ['','Up early after Fajr? Core Casuals 30 min (win 7)']])},
-      {name:'After school',when:'Online school ends 1:30 PM',items:mk([
-        ['1:30 PM','Rest + texting window 1 (until 1:50)'],
-        ['2:00 PM','Upper body and core workout (win 1)'],
-        ['2:30 PM','Core Casuals 30 min, if not done this morning (win 7)'],
-        ['3:00 PM','KA Designs: 5 DMs (win 8) + one piece (win 9)'],
-        ['4:00 PM','Free time. Gaming unlocked once wins 1, 7 and 8 are done']])},
-      {name:'Night routine',when:'From 9:00 PM',items:mk([
-        ['9:00 PM','Texting window 2 (until 9:20)'],
-        ['11:00 PM',"Plan tomorrow's wins (win 10)"],
-        ['11:10 PM','Quick review: what went well'],
-        ['11:30 PM','Phone charging outside my room'],
-        ['12:00 AM','Lights out']])}
+      {name:'Morning',when:'Before school',items:mk([
+        ['','Make the bed'],['','Glass of water'],['','Quick stretch, if you feel like it']])},
+      {name:'After school',when:'School ends 1:30 PM',items:mk([
+        ['1:30 PM','Rest and chill'],
+        ['2:30 PM','Build block: 30 min on Core Casuals or KA Designs'],
+        ['3:00 PM','Move: the workout, or a stretch on tired days'],
+        ['','The rest of the day is yours']])},
+      {name:'Night',when:'Wind down',items:mk([
+        ['',"Peek at tomorrow's wins"],
+        ['10:15 PM','Phone on charge outside your room'],
+        ['10:30 PM','Lights out (11:30 at the weekend)']])}
     ];
   }
   function defaults(){
@@ -829,21 +873,21 @@ button:active{transform:scale(.93)}
   if(S.scroll==null) S.scroll=0;
   if(!S.unl) S.unl={};
   if(!S.hustle) S.hustle={leads:[],dm:{date:'',n:0},goal:1000};
-  if(S.winsVer!==2){
-    S.tasks.forEach(function(t){ if(t.win && (t.n===8||t.n===9)) t.text=WINS[t.n-1]; });
-    S.routines.forEach(function(r){ r.items.forEach(function(it){ if(/KA Grind/.test(it.text)) it.text='KA Designs: 5 DMs (win 8) + one piece (win 9)'; }); });
-    S.winsVer=2;
+  if(S.winsVer!==3 && S.date===todayKey){
+    S.tasks=freshWins().concat(S.tasks.filter(function(t){return !t.win}));
+    S.countedToday=false;
   }
-  if(S.setVer!==SET_VER){ if(S.setVer!==4) S.rules=defaultRules(); S.routines=defaultRoutines(); S.setVer=SET_VER;
-    S.tasks.forEach(function(t){ if(t.win && t.n===2 && !t.done) t.text=WINS[1]; }); }
+  S.winsVer=3;
+  if(S.setVer!==SET_VER){ S.rules=defaultRules(); S.routines=defaultRoutines(); S.setVer=SET_VER; }
   var F=S.focus;
 
   if(S.date!==todayKey){
-    // streak survives only if yesterday was fully won
+    // streak survives if the last day was fully won (or was a free Friday) and no win-day was skipped since
     var p=S.date.split('-'), last=new Date(+p[0],+p[1]-1,+p[2]);
     var today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    var gap=Math.round((today0-last)/86400000);
-    if(!S.countedToday || gap>1) S.streak=0;
+    var missed=false, dd=new Date(last);
+    while(true){ dd.setDate(dd.getDate()+1); if(dd>=today0) break; if(dd.getDay()!==5){ missed=true; break; } }
+    if((!S.countedToday && last.getDay()!==5) || missed) S.streak=0;
     F.sessions=[]; F.done=null; F.taskId=null;
     var extras=S.tasks.filter(function(t){return !t.win && !t.done});
     S.tasks=freshWins().concat(extras);
@@ -918,17 +962,19 @@ button:active{transform:scale(.93)}
     var h=now.getHours();
     $('hello').innerHTML=(h<12?'Good morning':h<18?'Good afternoon':'Good evening')+', <span class="gtext">Kareem</span>';
 
-    var total=S.tasks.length, done=S.tasks.filter(function(t){return t.done}).length;
-    var pct=total?Math.round(done/total*100):0;
+    var wins=S.tasks.filter(function(t){return t.win}), free=todayIdx===5;
+    var total=wins.length, done=wins.filter(function(t){return t.done}).length;
+    var pct=free?100:(total?Math.round(done/total*100):0);
     $('ringArc').setAttribute('stroke-dashoffset',String(207.3-207.3*pct/100));
     countTo($('ringVal'),pct);
     $('barFill').style.width=pct+'%';
-    $('progLabel').textContent=done+' of '+total+' wins';
-    $('progSub').textContent= total===0?'Add your first win below.' : done===total?'Every win done. Day won.' : (total-done)+(total-done===1?' win':' wins')+' left. Keep moving.';
-    var tc=$('taskCount'); tc.textContent=done+'/'+total; tc.className='count num'+(total&&done===total?' full':'');
+    $('progLabel').textContent=free?'Free day 🌴':done+' of '+total+' wins';
+    $('progSub').textContent= free?'No wins today. Rest, play, enjoy.' : done===total?'All 5 done. Nice one.' : done===0?'One small win at a time.' : (total-done)+(total-done===1?' win':' wins')+' left. You’ve got this.';
+    var tc=$('taskCount'); tc.textContent=free?'Free':done+'/'+total; tc.className='count num'+(free||(total&&done===total)?' full':'');
+    $('winsHead').textContent=free?'Bonus tasks':"Today's 5 wins";
 
     var wonNow=false;
-    if(total>0 && done===total && !S.countedToday){S.streak++;S.countedToday=true;wonNow=true;}
+    if(!free && total>0 && done===total && !S.countedToday){S.streak++;S.countedToday=true;wonNow=true;}
     else if(S.countedToday && done<total){S.streak--;S.countedToday=false;}
     $('streakNum').textContent=S.streak+(S.streak===1?' day':' days');
     if(wonNow){ var st=$('streak'); st.classList.remove('bump'); void st.offsetWidth; st.classList.add('bump'); }
@@ -944,21 +990,25 @@ button:active{transform:scale(.93)}
     var nk=next?next.id:(total?'all':'none'); if(nk===lastNext && !fx.force) fx.enterCard=false; lastNext=nk;
     if(next){
       nc.className='next'+(fx.enterCard?' enter':'');
-      nc.innerHTML='<div class="eyebrow">'+(next.win?'Next win · '+next.n+' of 10':'Bonus task')+'</div><div class="task">'+esc(next.text)+'</div>'+
+      nc.innerHTML='<div class="eyebrow">'+(next.win?POOLS[next.slot].ico+' '+POOLS[next.slot].label+' · win '+next.n+' of 5':'Bonus task')+'</div><div class="task">'+esc(next.text)+'</div>'+
         '<div class="row"><button class="btn btn-main" data-act="done" data-id="'+next.id+'">'+CHECK.replace('#062B1E','#1E3A8A')+' Done, next</button>'+
         '<button class="btn btn-ghost" data-act="skip" data-id="'+next.id+'">Later</button></div>';
     }else{
       nc.className='next done-all'+(fx.enterCard?' enter':'');
-      nc.innerHTML= total
-        ? '<div class="eyebrow">Day complete 🏆</div><div class="task">You won '+total+' times today. Streak is safe.</div>'
-        : '<div class="eyebrow">Nothing yet</div><div class="task">Add a win below to start your day.</div>';
+      nc.innerHTML= free
+        ? '<div class="eyebrow">Friday 🌴</div><div class="task">It’s your free day. No wins needed, just enjoy it.</div>'
+        : total
+        ? '<div class="eyebrow">Day won 🏆</div><div class="task">All 5 wins done. Now go enjoy the rest of your day.</div>'
+        : '<div class="eyebrow">Nothing yet</div><div class="task">Add a task below to start.</div>';
     }
 
     var ordered=S.tasks.filter(function(t){return !t.done}).concat(S.tasks.filter(function(t){return t.done}));
     $('taskList').innerHTML=ordered.map(function(t){
       var cls='item'+(t.done?' done':'')+(fx.just===t.id?' just':'')+(fx.added===t.id?' enter-row':'');
       return '<li class="'+cls+'" data-id="'+t.id+'" style="--c:'+t.c+'"><span class="tdot"></span><button class="check" data-act="toggle" data-id="'+t.id+'" aria-label="'+(t.done?'Untick ':'Tick ')+esc(t.text)+'">'+CHECK+'</button>'+
-        '<span class="wnum num">'+(t.win?String(t.n).padStart(2,'0'):'+')+'</span><span class="text">'+esc(t.text)+'</span><button class="x" data-act="del" data-id="'+t.id+'" aria-label="Delete '+esc(t.text)+'">×</button></li>';
+        '<span class="wnum" aria-hidden="true">'+(t.win?POOLS[t.slot].ico:'+')+'</span><span class="text">'+esc(t.text)+(t.win?'<span class="wcat">'+POOLS[t.slot].label+'</span>':'')+'</span>'+
+        (t.win ? (t.done?'':'<button class="x swap" data-act="swap" data-id="'+t.id+'" aria-label="Swap for a different '+POOLS[t.slot].label+' win">↻</button>')
+               : '<button class="x" data-act="del" data-id="'+t.id+'" aria-label="Delete '+esc(t.text)+'">×</button>')+'</li>';
     }).join('');
 
     if(wonNow) setTimeout(rain,250);
@@ -995,8 +1045,8 @@ button:active{transform:scale(.93)}
     if(r[i]){ var p=centerOf(el); burst(p.x,p.y,16,6); }
     var all=r.every(Boolean);
     if(all){
-      var w=S.tasks.filter(function(t){return t.win&&t.n===1})[0];
-      if(w && !w.done){ w.done=true; renderToday({enterCard:true}); toast('Workout done. Win 1 ticked ✓'); }
+      var w=S.tasks.filter(function(t){return t.win&&t.tag==='workout'})[0];
+      if(w && !w.done){ w.done=true; renderToday({enterCard:true}); toast('Workout done. Move win ticked ✓'); }
       else toast('Workout done 💪');
       setTimeout(rain,200);
     }
@@ -1006,12 +1056,12 @@ button:active{transform:scale(.93)}
   function renderRoutines(fx){
     renderWorkout();
     fx=fx||{};
-    $('limDay').textContent='Every day';
+    $('limDay').textContent=WEEKEND(todayIdx)?'Weekend':'School day';
     var LIMITS=[
-      {ico:'📱',val:'30 min',name:'Scrolling',how:'A day, in total. None in the first hour after waking. KA Grind work doesn\u2019t count.'},
-      {ico:'💬',val:'2 × 20 min',name:'Texting',how:'1:30\u20131:50 PM and 9:00\u20139:20 PM. Reply later outside those.'},
-      {ico:'🎮',val:'2\u20133 hours',name:'Gaming',how:'A day, in total. Aim for 2, never past 3. Only after wins 1, 7 and 8.'},
-      {ico:'🌙',val:'11:30 PM',name:'Screens off',how:'Phone charging outside your room. In bed by 12.'}
+      {ico:'📱',val:'45 min',name:'Reels & short videos',how:'A day, in total. Texting and working on your pages don’t count.'},
+      {ico:'💬',val:'No limit',name:'Texting friends',how:'Just keep it out of focus sessions and after lights out.'},
+      {ico:'🎮',val:'2–3 hours',name:'Gaming',how:'On school days. More at the weekend. Building first is smart, not a must.'},
+      {ico:'🌙',val:'10:30 PM',name:'Screens off',how:'School nights. 11:30 PM at the weekend. Phone charges outside your room.'}
     ];
     renderMeals();
     $('limits').innerHTML=LIMITS.map(function(l){ return '<div class="lim"><span class="ico">'+l.ico+'</span><span class="val num">'+esc(l.val)+'</span><span class="name">'+esc(l.name)+'</span><span class="how">'+esc(l.how)+'</span></div>'; }).join('');
@@ -1077,8 +1127,17 @@ button:active{transform:scale(.93)}
     }
   });
 
+  /* ---------- win swap ---------- */
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-act="swap"]'); if(!el) return;
+    var id=el.getAttribute('data-id'), t=S.tasks.filter(function(x){return x.id===id})[0]; if(!t||!t.win) return;
+    var cur=t.text, it, tries=0;
+    do { t.k=(t.k||0)+1; it=winItem(t.slot,t.k); tries++; } while(it.t===cur && tries<10);
+    t.text=it.t; t.tag=it.tag; save(); renderToday({added:id});
+  });
+
   /* ---------- unlocks ---------- */
-  var SCROLL_LIMIT=30;
+  var SCROLL_LIMIT=45;
   function winDone(n){ return S.tasks.some(function(t){ return t.win && t.n===n && t.done; }); }
   function toast(msg){ var t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.remove('show'); },2200); }
   function setOpen(tileId,open,key){
@@ -1088,31 +1147,15 @@ button:active{transform:scale(.93)}
     else if(!open && was){ S.unl[key]=false; save(); }
   }
   function renderUnlocks(){
-    if(!$('lkGame')) return;
-    var need=[1,7,8], got=need.filter(winDone);
-    var gOpen=got.length===need.length;
-    var winsDone=S.tasks.filter(function(t){return t.win&&t.done}).length;
-    var sOpen=winsDone>=3;
-    $('unlockCount').textContent=((gOpen?1:0)+(sOpen?1:0))+'/2 open';
-
-    $('lkGameState').textContent=gOpen?'Unlocked · 2–3 hours today':'Locked · finish wins 1, 7 and 8';
-    var after4=new Date().getHours()>=16;
-    var reply=gOpen?'':(after4?"Can't rn, finishing my work first. On soon 🎮":"Can't rn, on at 4 🎮");
-    $('lkGameBody').innerHTML = gOpen
-      ? '<div class="lk-note">Have fun. Aim for 2 hours, never past 3.</div>'
-      : '<div class="need">'+need.map(function(n){ var ok=winDone(n); return '<span class="'+(ok?'ok':'')+'">'+(ok?'✓ ':'')+'Win '+n+'</span>'; }).join('')+'</div>'+
-        '<button type="button" class="copyreply" data-act="gReply" data-t="'+esc(reply)+'">📋 Copy reply: <q>'+esc(reply)+'</q></button>';
-    setOpen('lkGame',gOpen,'g');
-
-    var used=S.scroll||0, over=used>SCROLL_LIMIT;
-    $('lkScrollState').textContent=sOpen?(over?'Over today’s limit':'Unlocked · '+Math.max(0,SCROLL_LIMIT-used)+' min left'):'Locked · win 3 times first';
-    $('lkScrollBody').innerHTML = sOpen
-      ? '<div class="meter'+(over?' over':'')+'"><i style="width:'+Math.min(100,used/SCROLL_LIMIT*100)+'%"></i></div>'+
-        '<div class="scr-row"><span class="scr-used num'+(over?' over':'')+'">'+used+' / '+SCROLL_LIMIT+' min'+(over?' (+'+(used-SCROLL_LIMIT)+')':'')+'</span>'+
-        '<div class="scr-btns"><button type="button" class="mini-btn" data-act="scrAdd" data-d="-5" aria-label="Remove 5 minutes">−5</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="5">+5</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="10">+10</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="15">+15</button></div></div>'+
-        '<div class="lk-note">Log what you scroll. KA Grind work doesn’t count.</div>'
-      : '<div class="dots">'+[0,1,2].map(function(i){ return '<i class="'+(i<winsDone?'on':'')+'"></i>'; }).join('')+'</div><div class="lk-note">'+Math.min(winsDone,3)+' of 3 wins done</div>';
-    setOpen('lkScroll',sOpen,'s');
+    if(!$('lkScroll')) return;
+    var used=S.scroll||0, over=used>SCROLL_LIMIT, wk=WEEKEND(todayIdx);
+    $('unlockCount').textContent=used+' min';
+    $('lkScrollState').textContent=over?'Past today’s '+SCROLL_LIMIT+' min':Math.max(0,SCROLL_LIMIT-used)+' of '+SCROLL_LIMIT+' min left';
+    $('lkScrollBody').innerHTML='<div class="meter'+(over?' over':'')+'"><i style="width:'+Math.min(100,used/SCROLL_LIMIT*100)+'%"></i></div>'+
+      '<div class="scr-row"><span class="scr-used num'+(over?' over':'')+'">'+used+' / '+SCROLL_LIMIT+' min</span>'+
+      '<div class="scr-btns"><button type="button" class="mini-btn" data-act="scrAdd" data-d="-5" aria-label="Remove 5 minutes">−5</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="5">+5</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="10">+10</button><button type="button" class="mini-btn" data-act="scrAdd" data-d="15">+15</button></div></div>'+
+      '<div class="lk-note">Texting friends doesn’t count. Neither does working on your pages.</div>';
+    $('lkGameState').textContent=wk?'Weekend: more time today. Have fun 🎮':'2–3 hours today. Enjoy it, no guilt.';
   }
 
   /* ---------- sleep ---------- */
@@ -1170,7 +1213,7 @@ button:active{transform:scale(.93)}
     }
     else if(act==='scrAdd'){
       var before=S.scroll||0; S.scroll=Math.max(0,before+(+el.getAttribute('data-d'))); save(); renderUnlocks();
-      if(before<=SCROLL_LIMIT && S.scroll>SCROLL_LIMIT) toast('That’s past 30 min. Phone down, go win.');
+      if(before<=SCROLL_LIMIT && S.scroll>SCROLL_LIMIT) toast('That’s your '+SCROLL_LIMIT+' min for today. Maybe do something fun offline 🙂');
       else if(+el.getAttribute('data-d')>0 && S.scroll>=SCROLL_LIMIT-5 && S.scroll<=SCROLL_LIMIT) toast(Math.max(0,SCROLL_LIMIT-S.scroll)+' min left for today.');
     }
     else if(act==='wakeAdj'){
@@ -1409,9 +1452,9 @@ button:active{transform:scale(.93)}
   function hDmToday(){ var d=S.hustle.dm; return d.date===todayKey?d.n:0; }
   function hAddDm(){
     var d=S.hustle.dm; if(d.date!==todayKey){ d.date=todayKey; d.n=0; } d.n++;
-    if(d.n===5){
-      var w=S.tasks.filter(function(t){return t.win&&t.n===8})[0];
-      setTimeout(function(){ rain(); toast(w&&!w.done?'5 DMs sent. Win 8 ticked ✓':'5 DMs sent. Outreach done for today 🔥'); },300);
+    if(d.n===3){
+      var w=S.tasks.filter(function(t){return t.win&&t.tag==='dm'})[0];
+      setTimeout(function(){ rain(); toast(w&&!w.done?'3 DMs sent. Build win ticked ✓':'3 DMs sent. Nice work 🔥'); },300);
       if(w && !w.done){ w.done=true; renderToday({enterCard:true}); }
     }
   }
@@ -1448,8 +1491,8 @@ button:active{transform:scale(.93)}
     $('hEarnNote').textContent= earned>=goal?'1000 SAR reached. New goal time.':earned>=500?'500 hit! '+(goal-earned)+' SAR to 1000.':(500-earned)+' SAR to your first 500.';
 
     var n=hDmToday();
-    $('hDmCount').textContent=Math.min(n,99)+'/5 DMs';
-    $('hDots').innerHTML=[0,1,2,3,4].map(function(i){ return '<i class="'+(i<n?'on':'')+(fx.dot===i?' pop':'')+'"></i>'; }).join('');
+    $('hDmCount').textContent=Math.min(n,99)+'/3 DMs';
+    $('hDots').innerHTML=[0,1,2].map(function(i){ return '<i class="'+(i<n?'on':'')+(fx.dot===i?' pop':'')+'"></i>'; }).join('');
 
     var due=H.leads.filter(hDue);
     $('hFollowCard').hidden=!due.length;
@@ -1472,7 +1515,7 @@ button:active{transform:scale(.93)}
     var l={id:uid(),name:v,kind:$('hKind').value,status:'dm',dmDate:todayKey,price:0,ts:Date.now()};
     S.hustle.leads.push(l); var before=hDmToday(); hAddDm(); inp.value=''; save();
     var p=centerOf(this.querySelector('button')); burst(p.x,p.y,18,6);
-    renderHustle({added:l.id, dot:Math.min(before,4)});
+    renderHustle({added:l.id, dot:Math.min(before,2)});
   });
   document.addEventListener('change',function(e){
     var id=e.target.getAttribute && e.target.getAttribute('data-price'); if(!id) return;
@@ -1493,7 +1536,7 @@ button:active{transform:scale(.93)}
       else if(s==='replied'||s==='talking'){ p=centerOf(el); burst(p.x,p.y,14,5); }
       renderHustle({bump:id});
     }
-    else if(act==='hFollow' && l){ l.dmDate=todayKey; var before=hDmToday(); hAddDm(); save(); p=centerOf(el); burst(p.x,p.y,14,5); renderHustle({dot:Math.min(before,4)}); toast('Follow-up logged. Counts as a DM.'); }
+    else if(act==='hFollow' && l){ l.dmDate=todayKey; var before=hDmToday(); hAddDm(); save(); p=centerOf(el); burst(p.x,p.y,14,5); renderHustle({dot:Math.min(before,2)}); toast('Follow-up logged. Counts as a DM.'); }
     else if(act==='hDel' && l){
       if(!el.dataset.armed){ el.dataset.armed='1'; el.textContent='Tap again'; setTimeout(function(){ delete el.dataset.armed; el.textContent='Delete'; },2500); return; }
       S.hustle.leads=S.hustle.leads.filter(function(x){return x.id!==id}); hOpen=null; save(); renderHustle();
