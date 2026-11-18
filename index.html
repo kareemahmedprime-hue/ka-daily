@@ -415,6 +415,64 @@ button:active{transform:scale(.93)}
 .lk-head{display:flex;flex-direction:column;gap:2px}
 
 /* confetti layer */
+
+/* ===== KA KAIZEN mode ===== */
+body{transition:background .6s ease}
+.kzswitch{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;text-align:left;border:1px solid var(--line);border-radius:22px;padding:14px 16px;background:linear-gradient(135deg,rgba(26,39,112,.7),rgba(16,26,77,.7))}
+.kz-txt{display:flex;flex-direction:column;gap:2px}
+.kz-eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kz-name{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:.14em}
+.kz-knob{width:58px;height:34px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid var(--line);position:relative;flex:none;transition:background .4s}
+.kz-knob i{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.4);transition:transform .45s var(--spring)}
+.kzswitch[aria-pressed="true"] .kz-knob{background:linear-gradient(135deg,#24396E,#8FB4FF);border-color:transparent}
+.kzswitch[aria-pressed="true"] .kz-knob i{transform:translateX(24px)}
+.kz-code{display:flex;flex-direction:column;gap:12px;padding:16px}
+.kz-mantra{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.35}
+.kz-line{font-weight:700;color:var(--muted);font-size:15px}
+.kz-sec{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-top:4px}
+.kz-list{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:15px}
+.kz-list li::marker{color:var(--cyan)}
+.kz-code details{border-top:1px solid var(--line);padding-top:12px}
+.kz-code summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.kz-code summary::-webkit-details-marker{display:none}
+.kz-code summary::after{content:"+";font-size:20px;color:var(--cyan)}
+.kz-code details[open] summary::after{content:"−"}
+.kz-code details > *:not(summary){margin-top:10px}
+.who{display:flex;flex-direction:column;gap:2px;padding:4px 6px 8px}
+.who li{display:flex;gap:10px;padding:8px 6px;font-size:15px}
+.who b{font-weight:800;white-space:nowrap}
+.who span{color:var(--muted);font-weight:600}
+.kz-only{display:none!important}
+body.kz .kz-only{display:flex!important}
+body.kz .kareem-only{display:none!important}
+
+/* the switch moment */
+.kz-flash{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#000;opacity:0;pointer-events:none;text-align:center;padding:24px}
+.kz-flash.back{background:#070D2B}
+.kz-flash.run{animation:kzFlash 1.5s ease forwards}
+.kzf-name{font-family:var(--display);font-weight:800;font-size:34px;color:#fff;letter-spacing:.2em}
+.kzf-sub{font-weight:700;color:#A9C4F5;font-size:15px;letter-spacing:.04em}
+.kz-flash.run .kzf-name{animation:kzName 1.5s cubic-bezier(.2,.8,.2,1) forwards}
+.kz-flash.run .kzf-sub{animation:kzSub 1.5s ease forwards}
+@keyframes kzFlash{0%{opacity:0}18%{opacity:1}70%{opacity:1}100%{opacity:0}}
+@keyframes kzName{0%{letter-spacing:.7em;opacity:0;filter:blur(8px)}35%{letter-spacing:.2em;opacity:1;filter:blur(0)}100%{letter-spacing:.2em;opacity:1}}
+@keyframes kzSub{0%,30%{opacity:0;transform:translateY(8px)}50%,100%{opacity:1;transform:none}}
+
+/* the cold theme */
+body.kz{--bg:#02040C;--surface:#070B1C;--surface-2:#0C1330;--line:#1C2747;--text:#EAF1FF;--muted:#7F8DB3;--cyan:#CFE3FF;--blue:#8FB4FF;--violet:#24396E;--pink:#CFE3FF;--gold:#CFE3FF;
+  --grad:linear-gradient(135deg,#0E1A3D 0%,#24396E 55%,#5C7CC0 100%);
+  --grad-soft:linear-gradient(135deg,#050914 0%,#0E1A3D 60%,#1C2E5E 100%);
+  --grad-text:linear-gradient(90deg,#FFFFFF,#A9C4F5)}
+body.kz .bg i{opacity:.1!important;filter:blur(100px)}
+body.kz .card,body.kz .kzswitch{background:linear-gradient(180deg,rgba(12,19,48,.85),rgba(5,8,20,.92))}
+body.kz .kzswitch{border-color:#3A4E80;box-shadow:0 0 28px rgba(143,180,255,.12)}
+body.kz .streak{background:rgba(207,227,255,.06);color:#CFE3FF;border-color:rgba(207,227,255,.35);box-shadow:none}
+body.kz .flame{animation:none}
+body.kz .next{box-shadow:0 14px 40px rgba(0,0,0,.65),inset 0 0 0 1px rgba(207,227,255,.12)}
+body.kz .nav{background:rgba(2,4,12,.92)}
+body.kz .toast{background:#070B1C;border-color:#3A4E80}
+body.kz .ring svg,body.kz .bar i{filter:none;box-shadow:none}
+
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -424,6 +482,7 @@ button:active{transform:scale(.93)}
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="kz-flash" id="kzFlash" aria-hidden="true"><div class="kzf-name" id="kzfName">KA KAIZEN</div><div class="kzf-sub" id="kzfSub">Kareem, always improving.</div></div>
 <main class="app">
 
   <!-- TODAY -->
@@ -434,7 +493,29 @@ button:active{transform:scale(.93)}
           <div class="date num" id="dateLine">Saturday 7 Nov</div>
           <h1 id="hello">Let's go, <span class="gtext">Kareem</span></h1>
         </div>
-        <div class="streak num" id="streak" title="Days in a row with every task done"><span class="flame">🔥</span><span id="streakNum">3 days</span></div>
+        <div class="streak num" id="streak" title="Days in a row with every task done"><span class="flame" id="streakIco">🔥</span><span id="streakNum">3 days</span></div>
+      </div>
+
+      <button type="button" class="kzswitch" id="kzSwitch" data-act="kz" aria-pressed="false">
+        <span class="kz-txt"><span class="kz-eyebrow" id="kzEyebrow">Kareem mode · tap to switch</span><span class="kz-name">KA KAIZEN</span></span>
+        <span class="kz-knob" aria-hidden="true"><i></i></span>
+      </button>
+
+      <div class="card kz-code kz-only">
+        <div class="kz-mantra">Failed? Try again.<br>Failed again? Try again.</div>
+        <div class="kz-line">He's cold. He stays kind, but talks only when he has to.</div>
+        <details>
+          <summary>When it gets serious</summary>
+          <div class="kz-line">Being used. Disrespected. Bullied.</div>
+          <ul class="kz-list">
+            <li>No reaction. He doesn't give them what they want.</li>
+            <li>He speaks once, calm and clear. Then he's done.</li>
+            <li>He sets the line, and it stays set.</li>
+            <li>He walks away on his own terms.</li>
+            <li>Control, never rage.</li>
+            <li>Real bullying? He gets backup. That's the sharp move.</li>
+          </ul>
+        </details>
       </div>
 
       <div class="card progress">
@@ -490,7 +571,7 @@ button:active{transform:scale(.93)}
       <div class="card" id="sleepCard">
         <div class="card-head"><h2>Sleep</h2><span class="count num" id="sleepScore"></span></div>
         <div class="wake-row">
-          <span class="wr-label">Wake-up time</span>
+          <span class="wr-label">Fajr wake-up</span>
           <div class="wr-ctl">
             <button type="button" class="mini-btn" data-act="wakeAdj" data-d="-15" aria-label="15 minutes earlier">−</button>
             <span class="wr-time num" id="wakeT">7:30 AM</span>
@@ -627,6 +708,42 @@ button:active{transform:scale(.93)}
         <h1 id="rrTitle">Rules &amp; <span class="gtext">Routines</span></h1>
       </div>
 
+      <div class="card kz-code kz-only" style="flex-direction:column">
+        <div class="kz-sec">KA Kaizen · Kareem, always improving</div>
+        <div><div class="kz-line" style="color:var(--text)">Near perfect</div><div class="kz-line">Nothing is 100%, but near perfect is the standard. There's always 1% more.</div></div>
+        <div><div class="kz-line" style="color:var(--text)">Precise</div><div class="kz-line">Clean, deliberate thoughts. He doesn't think in circles.</div></div>
+        <div><div class="kz-line" style="color:var(--text)">Unbreakable</div><div class="kz-line">Failed? Try again. Failed again? Try again.</div></div>
+        <div class="kz-sec">His energy</div>
+        <ul class="kz-list">
+          <li>He's cold. He stays kind, but talks only when he has to.</li>
+          <li>He keeps his word to himself.</li>
+          <li>Nothing pulls him off course.</li>
+          <li>He speaks with presence.</li>
+          <li>He decides fast and owns it.</li>
+        </ul>
+        <div class="kz-sec">His modes</div>
+        <ul class="kz-list">
+          <li>🔥 Hungry: training</li>
+          <li>🧊 Cold: distractions and pressure</li>
+          <li>😎 Smooth: people and selling his brands</li>
+          <li>♟️ Sharp: planning and decisions</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div><h2>Who I am</h2><div class="when">Kareem · always on, even when nobody's watching</div></div></div>
+        <ul class="list who">
+          <li><b>Honest.</b><span>My word means something.</span></li>
+          <li><b>Respectful.</b><span>To everyone, even when I disagree.</span></li>
+          <li><b>Kind, not weak.</b><span>I help, but nobody walks over me.</span></li>
+          <li><b>Loyal.</b><span>I show up for the people who matter.</span></li>
+          <li><b>Humble.</b><span>I let results speak.</span></li>
+          <li><b>I own my mistakes.</b><span>"My bad," then I fix it.</span></li>
+          <li><b>Grateful.</b><span>For what I have, while I work for more.</span></li>
+          <li><b>I protect my values.</b><span>Pressure and trends don't move me.</span></li>
+        </ul>
+      </div>
+
       <div class="card" id="woCard">
         <div class="card-head"><div><h2>20-min workout</h2><div class="when">Upper body + core</div></div><span class="count num" id="woCount">0/3 rounds</span></div>
         <div class="wo-warm"><span class="wo-tag">Warm-up · 2 min</span>Arm circles, shoulder rolls and torso twists (30 s each), then 10 wall push-ups <a class="yt" href="https://www.youtube.com/watch?v=lIRpibTFB9I" target="_blank" rel="noopener" aria-label="Wall push-up tutorial on YouTube">▶ Watch</a></div>
@@ -668,7 +785,7 @@ button:active{transform:scale(.93)}
     </div>
   </section>
 
-  <p class="foot">KA Daily <span class="demo-tag">v2.0</span> · <button type="button" id="resetBtn">Reset everything</button></p>
+  <p class="foot">KA Daily <span class="demo-tag">v2.1</span> · <button type="button" id="resetBtn">Reset everything</button></p>
 </main>
 
 <nav class="nav" aria-label="Sections">
@@ -713,7 +830,7 @@ button:active{transform:scale(.93)}
   // Each category's pool is shuffled once and walked one step per day, so the same
   // weekday gets different wins from week to week. No pool length is a multiple of 7.
   var W=function(t,tag){ return {t:t,tag:tag||''}; };
-  var WORKOUT_W=W('20-min workout (Routines tab)','workout'), STRETCH_W=W('10-min stretch','stretch'), DM_W=W('Send 3 outreach DMs (The Hustle)','dm'), LIGHTS_W=W('Lights out by 10:30','sleep');
+  var WORKOUT_W=W('20-min workout (Routines tab)','workout'), STRETCH_W=W('10-min stretch','stretch'), DM_W=W('Send 3 outreach DMs (The Hustle)','dm'), LIGHTS_W=W('Lights out by 9:30','sleep');
   var POOLS={
     learn:{label:'Learn',ico:'📚',items:[
       'Read 10 pages of any book','Learn one new Canva trick and try it','Watch a 10-min video on branding, then explain it out loud',
@@ -761,7 +878,6 @@ button:active{transform:scale(.93)}
   function dayNumOf(d){ return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); }
   function winItem(slot,k){
     var a=PERM[slot], it=POOLS[slot].items[a[(dayNumOf(new Date())+k)%a.length]];
-    if(it.tag==='sleep' && new Date().getDay()===4) return W('Lights out by 11:30 (weekend night)','sleep');
     return it;
   }
 
@@ -827,29 +943,43 @@ button:active{transform:scale(.93)}
     });
   }
 
-  var SET_VER=6;
+  var SET_VER=7;
   function defaultRules(){
     return [
-      'Important thing first, then enjoy it guilt-free',
-      'My phone sleeps outside my bedroom',
-      'Protect my leg: if it hurts, stop',
-      'A missed day is fine. I just restart tomorrow'
+      "I don't sleep after Fajr",
+      'No phone for the first hour after waking',
+      'Screens off at 8:30. Sleep at 9:30',
+      'The plan comes before the game',
+      'No Discord during work blocks. I reply when I decide',
+      "I don't scroll. If I watch something, I picked it on purpose",
+      'I train every day, even if it’s just 15 minutes',
+      "I don't skip twice in a row",
+      "No excuses. I make adjustments",
+      'When I fail, I reset the same day, not "tomorrow"',
+      'I keep my word: to myself, my family and my people'
     ].map(function(t){ return {id:uid(),text:t,state:''}; });
   }
   function defaultRoutines(){
     var mk=function(a){ return a.map(function(x){ return {time:x[0],text:x[1],done:false}; }); };
     return [
-      {name:'Morning',when:'Before school',items:mk([
-        ['','Make the bed'],['','Glass of water'],['','Quick stretch, if you feel like it']])},
+      {name:'Morning',when:'Fajr to 9:00 · win the morning, win the day',items:mk([
+        ['Fajr','Wake up. No snooze. Pray'],
+        ['','Water + cold face wash. Phone stays off'],
+        ['','Train: workout, push-ups or a run'],
+        ['','Shower + breakfast'],
+        ['','Plan the day in KA Daily (5 min)'],
+        ['','Deep work: designs, Core Casuals or study'],
+        ['8:30 AM','Free time. Now the world gets access']])},
       {name:'After school',when:'School ends 1:30 PM',items:mk([
         ['1:30 PM','Rest and chill'],
         ['2:30 PM','Build block: 30 min on Core Casuals or KA Designs'],
         ['3:00 PM','Move: the workout, or a stretch on tired days'],
         ['','The rest of the day is yours']])},
-      {name:'Night',when:'Wind down',items:mk([
-        ['',"Peek at tomorrow's wins"],
-        ['10:15 PM','Phone on charge outside your room'],
-        ['10:30 PM','Lights out (11:30 at the weekend)']])}
+      {name:'Night',when:'Win tomorrow’s morning tonight',items:mk([
+        ['8:30 PM','Gaming and screens done'],
+        ['8:45 PM','Tick off today, plan tomorrow, lay out clothes'],
+        ['9:00 PM','Phone on charge, away from the bed'],
+        ['9:30 PM','Sleep']])}
     ];
   }
   function defaults(){
@@ -869,7 +999,8 @@ button:active{transform:scale(.93)}
   function fDefaults(){ return {mode:'focus',dur:25,lastFocus:25,taskId:null,running:false,endAt:0,remaining:25*60000,sessions:[],done:null}; }
   if(!S.focus) S.focus=fDefaults();
   if(!S.sleep) S.sleep={};
-  if(!S.wakeTarget) S.wakeTarget='07:30';
+  if(!S.wakeTarget||S.wakeTarget==='07:30') S.wakeTarget='04:50';
+  if(S.kaizen==null) S.kaizen=false;
   if(S.scroll==null) S.scroll=0;
   if(!S.unl) S.unl={};
   if(!S.hustle) S.hustle={leads:[],dm:{date:'',n:0},goal:1000};
@@ -909,7 +1040,7 @@ button:active{transform:scale(.93)}
   sizeCanvas(); window.addEventListener('resize',sizeCanvas);
   function burst(x,y,n,spread,colors){
     if(REDUCED) return;
-    colors=colors||COLORS;
+    colors=colors||pal();
     for(var i=0;i<n;i++){
       var a=Math.random()*Math.PI*2, sp=(Math.random()*.6+.4)*spread;
       parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-spread*.35,s:Math.random()*5+4,c:colors[i%colors.length],r:Math.random()*6,vr:(Math.random()-.5)*.4,life:1,shape:Math.random()<.5?0:1});
@@ -919,7 +1050,7 @@ button:active{transform:scale(.93)}
   function rain(){
     if(REDUCED) return;
     for(var i=0;i<140;i++){
-      parts.push({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.5,vx:(Math.random()-.5)*2,vy:Math.random()*3+2,s:Math.random()*6+5,c:COLORS[i%COLORS.length],r:Math.random()*6,vr:(Math.random()-.5)*.3,life:1.6,shape:i%2});
+      parts.push({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.5,vx:(Math.random()-.5)*2,vy:Math.random()*3+2,s:Math.random()*6+5,c:pal()[i%pal().length],r:Math.random()*6,vr:(Math.random()-.5)*.3,life:1.6,shape:i%2});
     }
     if(!running){ running=true; requestAnimationFrame(tick); }
   }
@@ -960,7 +1091,7 @@ button:active{transform:scale(.93)}
     fx=fx||{};
     $('dateLine').textContent=FULL[todayIdx]+' '+now.getDate()+' '+MONTHS[now.getMonth()];
     var h=now.getHours();
-    $('hello').innerHTML=(h<12?'Good morning':h<18?'Good afternoon':'Good evening')+', <span class="gtext">Kareem</span>';
+    $('hello').innerHTML=S.kaizen?'<span class="gtext">KA Kaizen</span> is here':(h<12?'Good morning':h<18?'Good afternoon':'Good evening')+', <span class="gtext">Kareem</span>';
 
     var wins=S.tasks.filter(function(t){return t.win}), free=todayIdx===5;
     var total=wins.length, done=wins.filter(function(t){return t.done}).length;
@@ -969,7 +1100,9 @@ button:active{transform:scale(.93)}
     countTo($('ringVal'),pct);
     $('barFill').style.width=pct+'%';
     $('progLabel').textContent=free?'Free day 🌴':done+' of '+total+' wins';
-    $('progSub').textContent= free?'No wins today. Rest, play, enjoy.' : done===total?'All 5 done. Nice one.' : done===0?'One small win at a time.' : (total-done)+(total-done===1?' win':' wins')+' left. You’ve got this.';
+    $('progSub').textContent= S.kaizen
+      ? (free?'Free day. He rests on purpose.' : done===total?'Near perfect. Day won.' : done===0?'Locked in. First win, now.' : (total-done)+' left. No excuses, only adjustments.')
+      : (free?'No wins today. Rest, play, enjoy.' : done===total?'All 5 done. Nice one.' : done===0?'One small win at a time.' : (total-done)+(total-done===1?' win':' wins')+' left. You’ve got this.');
     var tc=$('taskCount'); tc.textContent=free?'Free':done+'/'+total; tc.className='count num'+(free||(total&&done===total)?' full':'');
     $('winsHead').textContent=free?'Bonus tasks':"Today's 5 wins";
 
@@ -1058,10 +1191,10 @@ button:active{transform:scale(.93)}
     fx=fx||{};
     $('limDay').textContent=WEEKEND(todayIdx)?'Weekend':'School day';
     var LIMITS=[
-      {ico:'📱',val:'45 min',name:'Reels & short videos',how:'A day, in total. Texting and working on your pages don’t count.'},
+      {ico:'📱',val:'45 min',name:'Reels & short videos',how:'A day, in total. Only what you pick on purpose. Working on your pages doesn’t count.'},
       {ico:'💬',val:'No limit',name:'Texting friends',how:'Just keep it out of focus sessions and after lights out.'},
-      {ico:'🎮',val:'2–3 hours',name:'Gaming',how:'On school days. More at the weekend. Building first is smart, not a must.'},
-      {ico:'🌙',val:'10:30 PM',name:'Screens off',how:'School nights. 11:30 PM at the weekend. Phone charges outside your room.'}
+      {ico:'🎮',val:'2–3 hours',name:'Gaming',how:'On school days. More at the weekend. The plan comes first, then the game.'},
+      {ico:'🌙',val:'8:30 PM',name:'Screens off',how:'Phone on charge away from the bed at 9:00. Sleep at 9:30.'}
     ];
     renderMeals();
     $('limits').innerHTML=LIMITS.map(function(l){ return '<div class="lim"><span class="ico">'+l.ico+'</span><span class="val num">'+esc(l.val)+'</span><span class="name">'+esc(l.name)+'</span><span class="how">'+esc(l.how)+'</span></div>'; }).join('');
@@ -1222,6 +1355,33 @@ button:active{transform:scale(.93)}
     }
   });
 
+
+  /* ---------- KA Kaizen mood ---------- */
+  var KZC=['#FFFFFF','#CFE3FF','#A9C4F5','#8FB4FF','#5C7CC0'];
+  function pal(){ return S.kaizen?KZC:COLORS; }
+  function applyMood(){
+    var on=!!S.kaizen;
+    document.body.classList.toggle('kz',on);
+    var sw=$('kzSwitch'); sw.setAttribute('aria-pressed',String(on));
+    $('kzEyebrow').textContent=on?'On · tap to go back to Kareem':'Kareem mode · tap to switch';
+    $('streakIco').textContent=on?'🧊':'🔥';
+    var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content',on?'#02040C':'#070D2B');
+  }
+  var kzBusy=false;
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-act="kz"]'); if(!el||kzBusy) return;
+    kzBusy=true;
+    var turningOn=!S.kaizen, fl=$('kzFlash');
+    $('kzfName').textContent=turningOn?'KA KAIZEN':'KAREEM';
+    $('kzfSub').textContent=turningOn?'Kareem, always improving.':'Back to being you.';
+    fl.classList.toggle('back',!turningOn);
+    try{ if(navigator.vibrate) navigator.vibrate(turningOn?[30,40,60]:20); }catch(_){}
+    if(REDUCED){ S.kaizen=turningOn; save(); applyMood(); renderToday(); kzBusy=false; return; }
+    fl.classList.remove('run'); void fl.offsetWidth; fl.classList.add('run');
+    setTimeout(function(){ S.kaizen=turningOn; save(); applyMood(); renderToday(); },320);
+    setTimeout(function(){ fl.classList.remove('run'); kzBusy=false; },1550);
+  });
+
   function find(id){for(var i=0;i<S.tasks.length;i++) if(S.tasks[i].id===id) return i; return -1}
   function liOf(id){ return document.querySelector('#taskList .item[data-id="'+id+'"]'); }
   var WAIT=REDUCED?0:1;
@@ -1283,7 +1443,7 @@ button:active{transform:scale(.93)}
   }
   addHandler('addTask','taskInput',function(v){ var t={id:uid(),text:v,done:false,c:nextColor()}; S.tasks.push(t); save(); renderToday({added:t.id, enterCard:true}); });
   addHandler('addRule','ruleInput',function(v){ var r={id:uid(),text:v,state:''}; S.rules.push(r); save(); renderRoutines({added:r.id}); });
-  $('resetBtn').addEventListener('click',function(){ var b=$('resetBtn'); if(!b.dataset.armed){ b.dataset.armed='1'; b.textContent='Tap again to erase everything'; setTimeout(function(){ delete b.dataset.armed; b.textContent='Reset everything'; },3000); return; } delete b.dataset.armed; b.textContent='Reset everything'; S=defaults(); S.focus=fDefaults(); F=S.focus; S.sleep={}; S.wakeTarget='07:30'; S.scroll=0; S.unl={}; S.hustle={leads:[],dm:{date:'',n:0},goal:1000}; save(); shownPct=null; renderToday({enterCard:true, force:true}); renderRoutines(); renderFocus(); renderHustle(); });
+  $('resetBtn').addEventListener('click',function(){ var b=$('resetBtn'); if(!b.dataset.armed){ b.dataset.armed='1'; b.textContent='Tap again to erase everything'; setTimeout(function(){ delete b.dataset.armed; b.textContent='Reset everything'; },3000); return; } delete b.dataset.armed; b.textContent='Reset everything'; S=defaults(); S.focus=fDefaults(); F=S.focus; S.sleep={}; S.wakeTarget='04:50'; S.scroll=0; S.unl={}; S.hustle={leads:[],dm:{date:'',n:0},goal:1000}; save(); shownPct=null; applyMood(); renderToday({enterCard:true, force:true}); renderRoutines(); renderFocus(); renderHustle(); });
 
   /* ---------- focus timer ---------- */
   var FPRE={focus:[15,25,45,60],'break':[5,10,15,20]};
@@ -1564,7 +1724,7 @@ button:active{transform:scale(.93)}
   });
   window.addEventListener('hashchange',function(){ show(location.hash.slice(1),true); });
 
-  renderToday({enterCard:true}); renderRoutines(); renderFocus(); renderHustle(); show(location.hash.slice(1),false);
+  applyMood(); renderToday({enterCard:true}); renderRoutines(); renderFocus(); renderHustle(); show(location.hash.slice(1),false);
   if(F.running){ if(fLeft()<=0) fComplete(true); else loop(); }
 })();
 </script>
